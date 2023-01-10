@@ -32,12 +32,12 @@ export default function Form({ onSubmit, children }) {
     )
 }
 
-export function FormInput({ errors, label, name }) {
+export function FormInput({ errors, label, name, type, required }) {
     const { formState, onChange } = useFormContext();
     return (
-        <div className='form-group'>
+        <div className='form-group my-2'>
             <label >{label}</label>
-            <input type="text" className={`form-control ${errors?.length > 0 ? 'is-invalid' : ''}`} value={formState[name] || ''} onChange={e => {
+            <input required={required} type={type} className={`form-control ${errors?.length > 0 ? 'is-invalid' : ''}`} value={formState[name] || ''} onChange={e => {
                 onChange(name, e.currentTarget.value);
             }} />
             {
