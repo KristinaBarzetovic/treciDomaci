@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { UserContext } from './context';
 import Navbar from './components/Navbar';
 import ClothePage from './components/ClothePage';
+import BrandsPage from './components/BrandsPage';
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -20,6 +21,7 @@ function App() {
         <Navbar />
 
         <Routes>
+          <Route path='/brands' element={<BrandsPage />} />
           <Route path='/' element={<ClothePage />} />
         </Routes>
       </BrowserRouter>
