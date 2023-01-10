@@ -7,13 +7,8 @@ export default function ClotheCard({ clothe, onDelete }) {
             <div style={{
                 maxWidth: '300px'
             }} className='border rounded'>
-                <div style={{
-                    backgroundImage: `url(${clothe.url})`,
-                    backgroundSize: 'contain',
-                    minWidth: '200px',
-                    height: '300px',
-                }}>
-                </div>
+                <img width='300px' src={clothe.url} alt="No img" />
+
                 <div style={{ fontSize: "18px" }} className='text-center p-3'>
                     {clothe.title}
                 </div>
@@ -37,7 +32,6 @@ export default function ClotheCard({ clothe, onDelete }) {
                     )
                 }
             </div>
-
         </div>
     )
 }

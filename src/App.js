@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import ClothePage from './components/ClothePage';
 import BrandsPage from './components/BrandsPage';
 import LoginPage from './components/LoginPage';
+import CreateClothePage from './components/CreateClothePage';
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -22,9 +23,15 @@ function App() {
         <Navbar />
 
         <Routes>
+          {
+            user && (
+              <Route path='/create-clothe' element={<CreateClothePage />} />
+            )
+          }
           <Route path='/login' element={<LoginPage />} />
           <Route path='/brands' element={<BrandsPage />} />
           <Route path='/' element={<ClothePage />} />
+
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

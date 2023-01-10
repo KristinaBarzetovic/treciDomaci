@@ -32,14 +32,22 @@ export default function Form({ onSubmit, children }) {
     )
 }
 
-export function FormInput({ errors, label, name, type, required }) {
+export function FormInput({ errors, label, name, type, required, textArea = false }) {
     const { formState, onChange } = useFormContext();
     return (
         <div className='form-group my-2'>
-            <label >{label}</label>
-            <input required={required} type={type} className={`form-control ${errors?.length > 0 ? 'is-invalid' : ''}`} value={formState[name] || ''} onChange={e => {
-                onChange(name, e.currentTarget.value);
-            }} />
+            <label >{label}</label>{
+                textArea ? (
+                    <textArea required={required} type={type} className={`form-control ${errors?.length > 0 ? 'is-invalid' : ''}`} value={formState[name] || ''} onChange={e => {
+                        onChange(name, e.currentTarget.value);
+                    }}></textArea>
+                ) : (
+                    <input required={required} type={type} className={`form-control ${errors?.length > 0 ? 'is-invalid' : ''}`} value={formState[name] || ''} onChange={e => {
+                        onChange(name, e.currentTarget.value);
+                    }} />
+                )
+            }
+
             {
                 errors?.length > 0 && errors.map(error => {
                     return (

@@ -1,9 +1,10 @@
+import axios from 'axios';
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useUserContext } from '../context'
 
 export default function Navbar() {
-    const { user } = useUserContext();
+    const { user, setUser } = useUserContext();
     return (
         <nav className="navbar navbar-expand-lg border navbar-light sticky-top bg-light pr-3 pl-3">
 
@@ -25,7 +26,17 @@ export default function Navbar() {
                 </ul>
                 {
                     user && (
-                        <button className="btn btn-sm btn-outline-secondary mr-4" type="button">Logout</button>
+                        <button
+                            onClick={async () => {
+                                await axios.post('/logout', {}, {
+                                    headers: {
+                                        authorization: `Bearer ${user.token}`
+                                    }
+                                });
+                                setUser(undefined);
+                            }}
+                            className="btn btn-sm btn-outline-secondary mr-4"
+                            type="button">Logout</button>
                     )
 
                 }
