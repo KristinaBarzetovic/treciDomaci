@@ -1,11 +1,13 @@
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { UserContext } from './context';
 import Navbar from './components/Navbar';
+import ClothePage from './components/ClothePage';
 
 function App() {
   const [user, setUser] = useState(undefined);
+
   return (
 
     <UserContext.Provider
@@ -16,6 +18,10 @@ function App() {
     >
       <BrowserRouter>
         <Navbar />
+
+        <Routes>
+          <Route path='/' element={<ClothePage />} />
+        </Routes>
       </BrowserRouter>
     </UserContext.Provider>
   );
